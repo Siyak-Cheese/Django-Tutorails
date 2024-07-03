@@ -5,7 +5,7 @@
     # install package of dj
   > django-admin
     # list dj command
-  > django-admin startproject django-project
+  > django-admin startproject django_project
     # build a project of empty
   > tree
     # show the django_project construct
