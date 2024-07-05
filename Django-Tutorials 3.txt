@@ -1,0 +1,61 @@
+> update <doctype...> instead of <h1>Blog home</h1> in the blog\views.py file
+> create new folder to save templates
+	>> create sub directory under templates folder
+		# blog -> templates -> blog -> template.html
+	>> create home.html and about.html file under the blog folder
+> copy blog\apps.py 'BlogConfig' class to django_project\settings.py
+	# just set once for whole blog app.
+> update blog\views.py return render(request, 'blog/home.html')
+> django_project\urls.py file urlpatterns attribute set the home page url that the path method if the first *argu is none then the home page should be 'www.localhost:8000' not need second level, else the url should need second level url e.g. 'www.localhost:8000/about/'
+
+# ************************ #
+
+> add some dummy data use post request
+	>> add post data into blog\views.py file
+		# each dictionary will be information associate with one post
+	>> add content attribute into home method in views file
+	 >>> add content argument into rende method in the end
+	>> reference the post data in the home.html template file
+		>>> loop statement {% for post in posts %} it should be end by {% endfor %}
+		>>> Inside of the loop should be <h1>{{ post.title }}</h1>
+
+> add if/else statement into template.html
+	>> use {% if %}
+		   {% else %}
+		   {% endif %}
+> add title dictionary into render method into about function in the views file
+	>> render(request, 'blog/about.html', {'title': 'about'})
+		
+We have a problem that have too many repeat code.
+	> create a new template file named base.html
+		>> put the main code into base.html file
+		>> add {% block content %}{% endblock %} block call the content
+	> update home.html delete the reqeat code keep the unique code and add {% extends "blog/base.html" %}{% block content %} unique code {% endblock content %}
+	> udpate about.html same as home.html
+	
+bootstrap is an extremely popular library that makes it easy to add some nice styles in your website
+	> copy the Starter template of bootstrap page into base.html head part and body part then should keep the old code
+	> add div tag into body part for call bootstrap class by container then should give content some padding and spacing
+
+snippets
+	> copy navigation.html code into base.html body part upon on div tag part
+	> copy main.html code replace base.html body old div tag part
+	> copy article.html code replace old home.html code where between for loop
+
+# ************************ #
+Recap:
+We create a base template called base HTML and this is our parent template that other templates will inherit from and this is the main structure of our html that is going to be included on every single page now you can have multiple blocks but right now we just have a single block called content and that content block is what our other templates can override and when they override that content block with data it will place the data at this location in the html. So it will place it within this container div here.
+# ************************ #
+
+
+> add main.css file into blog/static/blog path 
+	>> then copy main.css code into main.css
+	>> next include the main.css file into our base template 
+	>> update base.html file add {% load static %} top line of the file
+	>> edit link tag for load static/main.css file
+	
+> edit base.html body part 
+	>> add href="{% url 'blog-home' %}" of blog-home page into home div tag
+		# The blog-home value come from blog\urls.py urlpatterns part
+	
+
